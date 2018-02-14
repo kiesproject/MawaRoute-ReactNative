@@ -2,8 +2,8 @@
 ## Description
 - [まわルート](https://github.com/kiesproject/MawaRoute)をReactNative + TypeScript + Redux + Redux-sagaで実装する
 
-### TS directory and Compiled JS direction
-- TS directory -> ```./src```
+### TS directory and Compiled JS direction
+- TS directory -> [./src](https://github.com/kiesproject/MawaRouteForRN/tree/master/src)
 - Compiled JS directory -> ```./build```
 
 ## Installation
