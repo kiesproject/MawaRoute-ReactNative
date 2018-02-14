@@ -6,6 +6,21 @@
 - TS directory -> [./src](https://github.com/kiesproject/MawaRouteForRN/tree/master/src)
 - Compiled JS directory -> ```./build```
 
+### Layer
+#### Container Component
+- AppContainer
+  - 最上位層で各コンポーネントの画面遷移実装を実現します．
+
+- HomeScreen
+  - 配下にあるコンポーネント(タブのスクリーンなどなど)の実装を実現します．
+  
+#### Presentational Component
+##### Tabs
+- ListScreen
+- MapScreen
+- RouletteScreen
+- DetailScreen(feature)
+
 ## Installation
 ```
 $ npm install -g typescript //typescriptをインストール済みの場合は不要
