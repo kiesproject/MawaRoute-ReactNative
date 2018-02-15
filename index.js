@@ -1,6 +1,4 @@
-'use strict';
-
 import { AppRegistry } from 'react-native';
-import App from './build/index';
+import App from './src/main';
 
 AppRegistry.registerComponent('MawaRouteForRN', () => App);
