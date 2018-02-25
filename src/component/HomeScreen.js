@@ -35,8 +35,13 @@ const Tab = TabNavigator(
 
 class HomeScreen extends Component {
   render() {
+    const { restaurant } = this.props.screenProps;
     return (
-      <Tab />
+      <Tab
+        screenProps={{
+          restaurant,
+        }}
+      />
     );
   }
 }

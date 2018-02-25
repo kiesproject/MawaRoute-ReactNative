@@ -1,12 +1,22 @@
 import React from 'react';
-import { View, Text } from 'react-native';
+import { View, Text, FlatList } from 'react-native';
+import PropTypes from 'prop-types';
+import { List } from 'immutable';
 
 class ListScreen extends React.Component {
   render() {
+    const { restaurant } = this.props.screenProps;
     return (
-      <View style={{ justifyContent: 'center', alignItems: 'center', flex: 1 }}>
-        <Text>ListScreen</Text>
-      </View>
+      <FlatList
+        data={restaurant.toArray()}
+        extraData={restaurant.toArray()}
+        keyExtractor={(item, index) => String(index)}
+        renderItem={({ item }) => (
+          <View style={{ justifyContent: 'center', alignItems: 'center', flex: 1 }}>
+            <Text>{item.name}</Text>
+          </View>
+        )}
+      />
     );
   }
 }
