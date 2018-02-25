@@ -20,14 +20,12 @@ export const AppNavigator = StackNavigator(
         title: '詳細'
       }
     }
-  }, {
-    initialRouteName: 'Detail',
   }
 );
 
 class AppWithNavigationState extends Component {
   render() {
-    const { dispatch, nav, addListener } = this.props;
+    const { dispatch, nav, addListener, restaurant } = this.props;
     return (
       <AppNavigator
         navigation={
@@ -37,6 +35,9 @@ class AppWithNavigationState extends Component {
             addListener,
           })
         }
+        screenProps={{
+          restaurant,
+        }}
       />
     );
   }
@@ -45,7 +46,8 @@ class AppWithNavigationState extends Component {
 function mapStateToProps(state) {
   return ({
     nav: state.nav,
-  })
+    restaurant: state.restaurant,
+  });
 }
 
 export default connect(mapStateToProps)(AppWithNavigationState);

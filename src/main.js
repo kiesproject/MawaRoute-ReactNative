@@ -1,7 +1,7 @@
 import React from 'react';
 import { createStore, applyMiddleware, } from 'redux';
 import { Provider } from 'react-redux';
-// import createMiddlewares from 'redux-saga';
+import createMiddlewares from 'redux-saga';
 import {
   createReactNavigationReduxMiddleware,
   createReduxBoundAddListener,
@@ -9,9 +9,10 @@ import {
 
 import AppContainer from './container/AppContainer';
 import appReducer from './reducers/index';
+import rootSaga from './sagas/index';
 
 // TODO: create `saga` middleware
-// const sagaMiddleware = createMiddlewares();
+const sagaMiddleware = createMiddlewares();
 
 // navigation middleware
 const navMiddleware = createReactNavigationReduxMiddleware(
@@ -23,8 +24,9 @@ const addListener = createReduxBoundAddListener('root');
 // create store
 const store = createStore(
   appReducer,
-  applyMiddleware(navMiddleware),
+  applyMiddleware(navMiddleware, sagaMiddleware),
 );
+sagaMiddleware.run(rootSaga);
 
 export default class App extends React.Component {
   render() {
