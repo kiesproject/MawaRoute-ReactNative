@@ -3,9 +3,7 @@ export function fetchRestaurant() {
   const key = '0ec809ca9e26ce462ed18ddc74768cb8';
   const format = 'json';
   return fetch(`${response}?keyid=${key}&format=${format}`)
-    .then((res) => res.json())
-    .then((json) => {
-      return json.rest;
-    })
-    .catch(error => { error });
+    .then(res => res.json())
+    .then(json => json.rest)
+    .catch(error => error);
 }
