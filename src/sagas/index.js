@@ -1,6 +1,5 @@
-import { all, fork, put, call } from 'redux-saga/effects';
+import { fork, put, call } from 'redux-saga/effects';
 import { updateRestaurant } from '../actions/index';
-import { List } from 'immutable';
 
 import { fetchRestaurant } from '../api/gnaviApi';
 
