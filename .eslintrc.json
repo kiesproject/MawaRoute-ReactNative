@@ -16,6 +16,12 @@
     "react/prefer-stateless-function": "off",
     "react/jsx-filename-extension": "off",
     "react/prop-types": "off",
-    "import/prefer-default-export": "off"
+    "import/prefer-default-export": "off",
+    "max-len": [
+      "error",
+      {
+        "code": 140
+      }
+    ]
   }
 }
