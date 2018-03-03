@@ -23,7 +23,7 @@ export const AppNavigator = StackNavigator({
 class AppWithNavigationState extends React.Component {
   render() {
     const {
-      dispatch, nav, addListener, restaurant,
+      dispatch, nav, addListener, location, restaurant,
     } = this.props;
     return (
       <AppNavigator
@@ -35,6 +35,7 @@ class AppWithNavigationState extends React.Component {
           })
         }
         screenProps={{
+          location,
           restaurant,
         }}
       />
@@ -45,6 +46,7 @@ class AppWithNavigationState extends React.Component {
 function mapStateToProps(state) {
   return ({
     nav: state.nav,
+    location: state.location,
     restaurant: state.restaurant,
   });
 }
