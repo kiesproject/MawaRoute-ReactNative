@@ -7,12 +7,12 @@
 #### Container Component
 - AppContainer
   - 最上位層で各コンポーネントの画面遷移実装を実現します．
-
-- HomeScreen
-  - 配下にあるコンポーネント(タブのスクリーンなどなど)の実装を実現します．
   
 #### Presentational Component
-##### Tabs
+- HomeScreen
+  - 配下にあるコンポーネント(タブのスクリーンなどなど)の実装を実現します．
+
+#### Tabs
 - ListScreen
 - MapScreen
 - RouletteScreen
@@ -21,6 +21,10 @@
 ## Installation
 ```
 $ npm install
+```
+`ios/`ディレクトリでpodsをinstallします
+```
+$ pod install
 ```
 
 ## Environment
