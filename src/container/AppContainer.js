@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { StackNavigator, addNavigationHelpers } from 'react-navigation';
 import { connect } from 'react-redux';
 
@@ -20,7 +20,7 @@ export const AppNavigator = StackNavigator({
   },
 });
 
-class AppWithNavigationState extends Component {
+class AppWithNavigationState extends React.Component {
   render() {
     const {
       dispatch, nav, addListener, restaurant,

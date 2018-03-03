@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { TabNavigator, TabBarBottom } from 'react-navigation';
 
 import ListScreen from './Tabs/ListScreen';
@@ -30,7 +30,7 @@ const Tab = TabNavigator({
   },
 });
 
-class HomeScreen extends Component {
+class HomeScreen extends React.Component {
   render() {
     const { restaurant } = this.props.screenProps;
     return (
