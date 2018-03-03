@@ -1,14 +1,17 @@
 import { PermissionsAndroid, Platform } from 'react-native';
-import { fork, put, call } from 'redux-saga/effects';
+import { all, fork, put, call } from 'redux-saga/effects';
 
-import { updateRestaurant } from '../actions/index';
+import { updateLocation, updateRestaurant } from '../actions/index';
 import { fetchRestaurantByLocation } from '../api/gnaviApi';
 import { getOnceLocation } from '../gps/LocationManager';
 
 function* loadRestaurantByGps() {
   const location = yield call(getOnceLocation);
   const rest = yield call(fetchRestaurantByLocation, location);
-  yield put(updateRestaurant(rest));
+  yield all([
+    put(updateLocation(location)),
+    put(updateRestaurant(rest)),
+  ]);
 }
 
 function* initLoad() {
