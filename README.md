@@ -9,10 +9,10 @@
   - 最上位層で各コンポーネントの画面遷移実装を実現します．
   
 #### Presentational Component
-- HomeScreen
+##### HomeScreen
   - 配下にあるコンポーネント(タブのスクリーンなどなど)の実装を実現します．
 
-#### Tabs
+##### Tabs
 - ListScreen
 - MapScreen
 - RouletteScreen
@@ -22,7 +22,7 @@
 ```
 $ npm install
 ```
-`ios/`ディレクトリでpodsをinstallします
+`ios/`ディレクトリでpodsをinstallします
 ```
 $ pod install
 ```
