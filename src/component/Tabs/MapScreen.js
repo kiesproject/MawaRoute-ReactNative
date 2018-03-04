@@ -24,11 +24,11 @@ function regionFrom(lat, lon, distance) {
 class MapScreen extends React.Component {
   render() {
     const { location, restaurant } = this.props.screenProps;
-    restaurant.map(rest => (console.log(rest)));
     return (
       <MapView
         style={{ flex: 1 }}
         region={regionFrom(location.latitude, location.longitude, 80)}
+        provider="google"
       >
         {restaurant.map(marker => (
           <Marker

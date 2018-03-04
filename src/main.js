@@ -11,7 +11,6 @@ import AppContainer from './container/AppContainer';
 import appReducer from './reducers/index';
 import rootSaga from './sagas/index';
 
-// TODO: create `saga` middleware
 const sagaMiddleware = createMiddlewares();
 
 // navigation middleware

@@ -39,10 +39,24 @@ function restaurant(state = initialListState, action) {
   }
 }
 
+const initialRefreshVisibility = false;
+function refresh(state = initialRefreshVisibility, action) {
+  switch (action.type) {
+    case 'SET_VISIBILITY': {
+      return action.visibility;
+    }
+    default: {
+      return state;
+    }
+  }
+}
+
+
 const appReducer = combineReducers({
   nav,
   location,
   restaurant,
+  refresh,
 });
 
 export default appReducer;
