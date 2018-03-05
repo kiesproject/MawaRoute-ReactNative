@@ -28,6 +28,7 @@ const Tab = TabNavigator({
     showLabel: true,
     showIcon: true,
   },
+  swipeEnabled: false,
 });
 
 class HomeScreen extends React.Component {

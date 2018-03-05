@@ -1,5 +1,5 @@
 function getLocation() {
-  return new Promise((resolve) => {
+  return new Promise((resolve, reject) => {
     navigator.geolocation.getCurrentPosition(
       (position) => {
         const location = {
@@ -9,7 +9,9 @@ function getLocation() {
         resolve(location);
       },
       // TODO: error handling
-      error => console.log(error),
+      (error) => {
+        reject(error);
+      },
     );
   });
 }
@@ -20,5 +22,6 @@ async function syncLocation() {
 }
 
 export function getOnceLocation() {
-  return syncLocation().then(location => location);
+  return syncLocation()
+    .then(location => location);
 }
