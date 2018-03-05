@@ -7,13 +7,18 @@ import { getOnceLocation } from '../gps/LocationManager';
 
 function* loadRestaurantByGps() {
   yield put(setRefreshVisibility(true));
-  const location = yield call(getOnceLocation);
-  const rest = yield call(fetchRestaurantByLocation, location);
-  yield all([
-    put(updateLocation(location)),
-    put(updateRestaurant(rest)),
-    put(setRefreshVisibility(false)),
-  ]);
+  try {
+    // location
+    const location = yield call(getOnceLocation);
+    yield put(updateLocation(location));
+    // load resaurant
+    const rest = yield call(fetchRestaurantByLocation, location);
+    yield put(updateRestaurant(rest));
+  } catch (error) {
+    // TODO: error handling
+    console.log('loadRestaurantByGps', error);
+  }
+  yield put(setRefreshVisibility(false));
 }
 
 function* initLoad() {
@@ -29,7 +34,7 @@ function* initLoad() {
     }
   } catch (error) {
     // TODO: error handling
-    yield console.log(error);
+    yield console.log('initLoad', error);
   }
 }
 
