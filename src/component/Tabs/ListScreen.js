@@ -1,5 +1,6 @@
 import React from 'react';
-import { View, Text, FlatList } from 'react-native';
+import { FlatList } from 'react-native';
+import ListItem from './ListItem';
 
 class ListScreen extends React.Component {
   render() {
@@ -12,9 +13,9 @@ class ListScreen extends React.Component {
         onRefresh={() => pullToRefresh()}
         refreshing={refresh}
         renderItem={({ item }) => (
-          <View style={{ justifyContent: 'center', alignItems: 'center', flex: 1 }}>
-            <Text>{item.name}</Text>
-          </View>
+          <ListItem
+            item={item}
+          />
         )}
       />
     );
