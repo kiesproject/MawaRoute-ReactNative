@@ -28,6 +28,7 @@ class MapScreen extends React.Component {
       <MapView
         style={{ flex: 1 }}
         region={regionFrom(location.latitude, location.longitude, 80)}
+        zoomEnabled={false}
         provider="google"
       >
         {restaurant.map(marker => (
