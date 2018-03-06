@@ -4,7 +4,9 @@ import ListItem from './ListItem';
 
 class ListScreen extends React.Component {
   render() {
-    const { restaurant, refresh, pullToRefresh } = this.props.screenProps;
+    const {
+      restaurant, refresh, pullToRefresh, goDetail,
+    } = this.props.screenProps;
     return (
       <FlatList
         data={restaurant.toArray()}
@@ -15,6 +17,7 @@ class ListScreen extends React.Component {
         renderItem={({ item }) => (
           <ListItem
             item={item}
+            goDetail={goDetail}
           />
         )}
       />

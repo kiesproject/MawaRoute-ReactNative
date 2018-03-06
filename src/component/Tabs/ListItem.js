@@ -28,7 +28,7 @@ function typeOfObject(param) {
 
 class ListItem extends React.Component {
   render() {
-    const { item } = this.props;
+    const { item, goDetail } = this.props;
     const { width } = Dimensions.get('window');
     return (
       <View style={styles.container}>
@@ -53,7 +53,7 @@ class ListItem extends React.Component {
             {item.name}
           </Text>
           <Text style={[theme.cardContentStyle]}>{item.address}</Text>
-          <TouchableOpacity onPress={() => console.log('tap')}>
+          <TouchableOpacity onPress={() => goDetail(item)}>
             <Text style={theme.cardActionStyle}>詳細画面</Text>
           </TouchableOpacity>
         </View>
