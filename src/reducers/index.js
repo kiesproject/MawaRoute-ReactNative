@@ -1,4 +1,5 @@
 import { List } from 'immutable';
+import { NavigationActions } from 'react-navigation';
 import { combineReducers } from 'redux';
 import { AppNavigator } from '../container/AppContainer';
 
@@ -6,6 +7,15 @@ const initialNavState = AppNavigator.router.getStateForAction(AppNavigator.route
 
 function nav(state = initialNavState, action) {
   switch (action.type) {
+    case 'GO_DETAIL': {
+      return AppNavigator.router.getStateForAction(
+        NavigationActions.navigate({
+          routeName: 'Detail',
+          params: action.rest,
+        }),
+        state,
+      );
+    }
     default: {
       return AppNavigator.router.getStateForAction(action, state);
     }
