@@ -54,6 +54,4 @@ workflows:
   node-android:
     jobs:
       - lint
-      - android:
-          requires:
-            - lint
+      - android
