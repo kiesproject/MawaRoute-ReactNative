@@ -3,10 +3,10 @@ const UPDATE_LOCATION = 'UPDATE_LOCATION';
 const UPDATE_LIST = 'UPDATE_LIST';
 const SET_VISIBILITY = 'SET_VISIBILITY';
 
-export function updateRestaurant(restraurantList) {
+export function updateRestaurant(restaurantList) {
   return {
     type: UPDATE_RESTAURANT,
-    list: restraurantList,
+    list: restaurantList,
   };
 }
 
