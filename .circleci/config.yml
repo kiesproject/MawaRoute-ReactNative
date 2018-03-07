@@ -12,7 +12,7 @@ jobs:
           name: Install Reviewdog
           command: curl -fSL https://github.com/haya14busa/reviewdog/releases/download/$REVIEWDOG_VERSION/reviewdog_linux_amd64 -o reviewdog && chmod +x ./reviewdog
       - run: npm install
-      - run: npx eslint . -f compact | reviewdog -f=eslint-compact -ci="circle-ci"
+      - run: npx eslint . -f compact | ./reviewdog -f=eslint-compact -ci="circle-ci"
       - persist_to_workspace:
           root: ~/project
           paths:
