@@ -1,10 +1,8 @@
 import React from 'react';
-import { View, Text, Platform, StyleSheet, Image, TouchableOpacity, Dimensions } from 'react-native';
+import { View, Text, StyleSheet, Image, TouchableOpacity, Dimensions } from 'react-native';
 import { getTheme } from 'react-native-material-kit';
 
 const theme = getTheme();
-// card
-
 // title
 theme.cardTitleStyle.color = 'white';
 
@@ -13,7 +11,7 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: 'stretch',
     padding: 8,
-    marginTop: Platform.OS === 'android' ? 56 : 0,
+    // marginTop: Platform.OS === 'android' ? 56 : 0,
   },
   title: {
     padding: 8,
@@ -34,17 +32,18 @@ class ListItem extends React.Component {
       <View style={styles.container}>
         <View style={theme.cardStyle}>
           {/* TODO: decide theme */}
-          <Image
-            source={{ uri: !typeOfObject(item.image_url.shop_image1) ? item.image_url.shop_image1 : '' }}
-            style={[theme.cardImageStyle, { backgroundColor: '#ff4500' }]}
-          />
-          {/* Image overlay */}
           {
             !typeOfObject(item.image_url.shop_image1) ?
-              <Image
-                style={[theme.cardImageStyle, { ...StyleSheet.absoluteFillObject, backgroundColor: '#0008' }]}
-              /> :
-              null
+              <View>
+                <Image
+                  source={{ uri: item.image_url.shop_image1 }}
+                  style={[theme.cardImageStyle]}
+                />
+                <View
+                  style={[{ ...StyleSheet.absoluteFillObject, backgroundColor: '#0005', height: 170 }]}
+                />
+              </View> :
+              <View style={[{ height: 170, backgroundColor: '#e4581bff' }]} />
           }
           <Text
             style={[theme.cardTitleStyle, { maxWidth: width - 16 - 24 }]}
