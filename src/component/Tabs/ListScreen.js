@@ -1,9 +1,12 @@
 import React from 'react';
-import { View, Text, FlatList } from 'react-native';
+import { FlatList } from 'react-native';
+import ListItem from './ListItem';
 
 class ListScreen extends React.Component {
   render() {
-    const { restaurant, refresh, pullToRefresh } = this.props.screenProps;
+    const {
+      restaurant, refresh, pullToRefresh, goDetail,
+    } = this.props.screenProps;
     return (
       <FlatList
         data={restaurant.toArray()}
@@ -12,9 +15,10 @@ class ListScreen extends React.Component {
         onRefresh={() => pullToRefresh()}
         refreshing={refresh}
         renderItem={({ item }) => (
-          <View style={{ justifyContent: 'center', alignItems: 'center', flex: 1 }}>
-            <Text>{item.name}</Text>
-          </View>
+          <ListItem
+            item={item}
+            goDetail={goDetail}
+          />
         )}
       />
     );

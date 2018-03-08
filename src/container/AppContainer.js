@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 
 import HomeScreen from '../component/HomeScreen';
 import DetailScreen from '../component/DetailScreen';
-import { updateList } from '../actions/index';
+import { updateList, goDetail } from '../actions/index';
 
 export const AppNavigator = StackNavigator({
   Home: {
@@ -25,11 +25,18 @@ class AppWithNavigationState extends React.Component {
   constructor(props) {
     super(props);
     this.pullToRefresh = this.pullToRefresh.bind(this);
+    this.goDetail = this.goDetail.bind(this);
   }
 
   pullToRefresh() {
     const { dispatch } = this.props;
     dispatch(updateList());
+  }
+
+  goDetail(rest) {
+    console.log('goDetail');
+    const { dispatch } = this.props;
+    dispatch(goDetail(rest));
   }
 
   render() {
@@ -50,6 +57,7 @@ class AppWithNavigationState extends React.Component {
           restaurant,
           refresh,
           pullToRefresh: this.pullToRefresh,
+          goDetail: this.goDetail,
         }}
       />
     );
