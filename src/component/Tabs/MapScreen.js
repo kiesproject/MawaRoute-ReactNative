@@ -30,15 +30,20 @@ class MapScreen extends React.Component {
         region={regionFrom(location.latitude, location.longitude, 80)}
         provider="google"
       >
-        {restaurant.map(marker => (
-          <Marker
-            coordinate={{ latitude: parseFloat(marker.latitude), longitude: parseFloat(marker.longitude) }}
-            title={marker.name}
-            description={marker.category}
-            // TODO: decide theme
-            pinColor="#ff8c00"
-          />
-        ))}
+        {
+          restaurant.map(marker => (
+            <Marker
+              coordinate={{
+                latitude: parseFloat(marker.locale.latitude),
+                longitude: parseFloat(marker.locale.longitude),
+              }}
+              title={marker.name}
+              description={marker.category}
+              // TODO: decide theme
+              pinColor={marker.isChecked ? '#05c8fbff' : '#ff8c00'}
+            />
+          ))
+        }
         <Marker
           coordinate={{ latitude: location.latitude, longitude: location.longitude }}
           title="現在地"
