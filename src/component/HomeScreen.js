@@ -34,7 +34,7 @@ const Tab = TabNavigator({
 class HomeScreen extends React.Component {
   render() {
     const {
-      restaurant, location, refresh, pullToRefresh, goDetail,
+      restaurant, location, refresh, pullToRefresh, goDetail, check,
     } = this.props.screenProps;
     return (
       <Tab
@@ -44,6 +44,7 @@ class HomeScreen extends React.Component {
           refresh,
           pullToRefresh,
           goDetail,
+          check,
         }}
       />
     );

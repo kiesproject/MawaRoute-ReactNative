@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 
 import HomeScreen from '../component/HomeScreen';
 import DetailScreen from '../component/DetailScreen';
-import { updateList, goDetail } from '../actions/index';
+import { updateList, goDetail, check } from '../actions/index';
 
 export const AppNavigator = StackNavigator({
   Home: {
@@ -27,6 +27,7 @@ class AppWithNavigationState extends React.Component {
     super(props);
     this.pullToRefresh = this.pullToRefresh.bind(this);
     this.goDetail = this.goDetail.bind(this);
+    this.check = this.check.bind(this);
   }
 
   componentDidMount() {
@@ -49,9 +50,13 @@ class AppWithNavigationState extends React.Component {
   }
 
   goDetail(rest) {
-    console.log('goDetail');
     const { dispatch } = this.props;
     dispatch(goDetail(rest));
+  }
+
+  check(isChecked, index) {
+    const { dispatch } = this.props;
+    dispatch(check(isChecked, index));
   }
 
   render() {
@@ -73,6 +78,7 @@ class AppWithNavigationState extends React.Component {
           refresh,
           pullToRefresh: this.pullToRefresh,
           goDetail: this.goDetail,
+          check: this.check,
         }}
       />
     );
