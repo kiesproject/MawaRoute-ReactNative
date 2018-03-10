@@ -45,6 +45,9 @@ const styles = StyleSheet.create({
     padding: 15,
     color: 'rgba(0, 0, 0, 0.54)',
   },
+  imageTransparent: {
+    ...StyleSheet.absoluteFillObject, backgroundColor: '#0005', height: 170, alignItems: 'flex-end',
+  },
   cardActionStyle: {
     borderStyle: 'solid',
     borderTopColor: 'rgba(0, 0, 0, 0.1)',
@@ -59,24 +62,37 @@ function typeOfObject(param) {
 
 class ListItem extends React.Component {
   render() {
-    const { item, goDetail } = this.props;
+    const {
+      item, goDetail, check, index,
+    } = this.props;
     const { width } = Dimensions.get('window');
-    const checkbox = <Icon size={48} name="checkbox-blank-circle-outline" color="white" />;
+    const checkbox = item.isChecked ?
+      (<Icon
+        size={32}
+        name="check-circle-outline"
+        color="white"
+        onPress={() => check(!item.isChecked, index)}
+      />) :
+      (<Icon
+        size={32}
+        name="checkbox-blank-circle-outline"
+        color="white"
+        onPress={() => check(!item.isChecked, index)}
+      />);
     return (
       <View style={styles.container}>
         <View style={styles.cardStyle}>
           {/* TODO: decide theme */}
           {
-            !typeOfObject(item.image_url.shop_image1) ?
-              <View style={{ flex: 'flex-end' }}>
-                {checkbox}
+            !typeOfObject(item.imgUrl) ?
+              <View>
                 <Image
-                  source={{ uri: item.image_url.shop_image1 }}
+                  source={{ uri: item.imgUrl }}
                   style={[styles.cardImageStyle]}
                 />
-                <View
-                  style={[{ ...StyleSheet.absoluteFillObject, backgroundColor: '#0005', height: 170 }]}
-                />
+                <View style={styles.imageTransparent}>
+                  {checkbox}
+                </View>
               </View> :
               <View style={[{ height: 170, backgroundColor: '#e4581bff', alignItems: 'flex-end' }]}>
                 {checkbox}

@@ -5,7 +5,7 @@ import ListItem from './ListItem';
 class ListScreen extends React.Component {
   render() {
     const {
-      restaurant, refresh, pullToRefresh, goDetail,
+      restaurant, refresh, pullToRefresh, goDetail, check, isChecked,
     } = this.props.screenProps;
     return (
       <FlatList
@@ -14,10 +14,13 @@ class ListScreen extends React.Component {
         keyExtractor={(item, index) => String(index)}
         onRefresh={() => pullToRefresh()}
         refreshing={refresh}
-        renderItem={({ item }) => (
+        renderItem={({ item, index }) => (
           <ListItem
             item={item}
             goDetail={goDetail}
+            check={check}
+            isChecked={isChecked}
+            index={index}
           />
         )}
       />
