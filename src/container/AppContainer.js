@@ -1,5 +1,6 @@
 import React from 'react';
-import { StackNavigator, addNavigationHelpers } from 'react-navigation';
+import { BackHandler } from 'react-native';
+import { StackNavigator, addNavigationHelpers, NavigationActions } from 'react-navigation';
 import { connect } from 'react-redux';
 
 import HomeScreen from '../component/HomeScreen';
@@ -28,6 +29,20 @@ class AppWithNavigationState extends React.Component {
     this.goDetail = this.goDetail.bind(this);
   }
 
+  componentDidMount() {
+    BackHandler.addEventListener('hardwareBackPress', this.onBackPress);
+  }
+  componentWillUnmount() {
+    BackHandler.removeEventListener('hardwareBackPress', this.onBackPress);
+  }
+  onBackPress = () => {
+    const { dispatch, nav } = this.props;
+    if (nav.index === 0) {
+      return false;
+    }
+    dispatch(NavigationActions.back());
+    return true;
+  };
   pullToRefresh() {
     const { dispatch } = this.props;
     dispatch(updateList());
