@@ -1,5 +1,6 @@
 import React from 'react';
 import { View, Text, StyleSheet, Image, TouchableOpacity, Dimensions } from 'react-native';
+import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 
 const styles = StyleSheet.create({
   container: {
@@ -60,13 +61,15 @@ class ListItem extends React.Component {
   render() {
     const { item, goDetail } = this.props;
     const { width } = Dimensions.get('window');
+    const checkbox = <Icon size={48} name="checkbox-blank-circle-outline" color="white" />;
     return (
       <View style={styles.container}>
         <View style={styles.cardStyle}>
           {/* TODO: decide theme */}
           {
             !typeOfObject(item.image_url.shop_image1) ?
-              <View>
+              <View style={{ flex: 'flex-end' }}>
+                {checkbox}
                 <Image
                   source={{ uri: item.image_url.shop_image1 }}
                   style={[styles.cardImageStyle]}
@@ -75,7 +78,9 @@ class ListItem extends React.Component {
                   style={[{ ...StyleSheet.absoluteFillObject, backgroundColor: '#0005', height: 170 }]}
                 />
               </View> :
-              <View style={[{ height: 170, backgroundColor: '#e4581bff' }]} />
+              <View style={[{ height: 170, backgroundColor: '#e4581bff', alignItems: 'flex-end' }]}>
+                {checkbox}
+              </View>
           }
           <Text
             style={[styles.cardTitleStyle, { maxWidth: width - 16 - 24 }]}
