@@ -32,7 +32,7 @@ $ pod install
 ## Important
 RNのver0.53以降、`react-native-vector-icons`で致命的なエラーが起きているようです。パッケージをインストールするたびに必ず以下のコマンドを行ってください。
 ```
-rm $ ./node_modules/react-native/local-cli/core/__fixtures__/files/package.json
+$ rm ./node_modules/react-native/local-cli/core/__fixtures__/files/package.json
 ```
 
 ## Environment
