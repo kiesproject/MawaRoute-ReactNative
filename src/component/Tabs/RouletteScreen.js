@@ -1,12 +1,19 @@
 import React from 'react';
-import { View, Text } from 'react-native';
+import { Text, FlatList } from 'react-native';
 
 class RouletteScreen extends React.Component {
   render() {
+    const { restaurant } = this.props.screenProps;
+    const checkedRestaurant = restaurant.filter(rest => rest.isChecked);
     return (
-      <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-        <Text>RouletteScreen</Text>
-      </View>
+      <FlatList
+        data={checkedRestaurant.toArray()}
+        extraData={checkedRestaurant.toArray()}
+        keyExtractor={(item, index) => String(index)}
+        renderItem={({ item }) => (
+          <Text>{item.name}</Text>
+        )}
+      />
     );
   }
 }
