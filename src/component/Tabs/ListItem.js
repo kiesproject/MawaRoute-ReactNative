@@ -13,6 +13,9 @@ const styles = StyleSheet.create({
     fontSize: 24,
     fontWeight: 'bold',
   },
+  iconStyle: {
+    padding: 8,
+  },
   cardStyle: {
     backgroundColor: '#ffffff',
     borderRadius: 2,
@@ -63,21 +66,23 @@ function typeOfObject(param) {
 class ListItem extends React.Component {
   render() {
     const {
-      item, goDetail, check, index,
+      item, goDetail, handleCheckBox, index,
     } = this.props;
     const { width } = Dimensions.get('window');
     const checkbox = item.isChecked ?
       (<Icon
-        size={32}
+        size={48}
         name="check-circle-outline"
         color="white"
-        onPress={() => check(!item.isChecked, index)}
+        onPress={() => { handleCheckBox(item, index); }}
+        style={styles.iconStyle}
       />) :
       (<Icon
-        size={32}
+        size={48}
         name="checkbox-blank-circle-outline"
         color="white"
-        onPress={() => check(!item.isChecked, index)}
+        onPress={() => { handleCheckBox(item, index); }}
+        style={styles.iconStyle}
       />);
     return (
       <View style={styles.container}>
