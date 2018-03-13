@@ -1,5 +1,6 @@
 import React from 'react';
 import MapView, { Marker } from 'react-native-maps';
+import uuid from 'uuid/v4';
 
 function regionFrom(lat, lon, distance) {
   const dist = distance / 2;
@@ -33,6 +34,7 @@ class MapScreen extends React.Component {
         {
           restaurant.map(marker => (
             <Marker
+              key={uuid()}
               coordinate={{
                 latitude: parseFloat(marker.locale.latitude),
                 longitude: parseFloat(marker.locale.longitude),
