@@ -1,6 +1,8 @@
 import React from 'react';
-import { View, Text, FlatList, Dimensions, StyleSheet, TouchableOpacity } from 'react-native';
+import { View, Text, FlatList, Dimensions, StyleSheet, TouchableOpacity, Animated, Easing } from 'react-native';
 import ListItem from './ListItem';
+
+const snackHeight = 50;
 
 const styles = StyleSheet.create({
   snackContainer: {
@@ -10,7 +12,7 @@ const styles = StyleSheet.create({
   snack: {
     flexDirection: 'row',
     position: 'absolute',
-    height: 50,
+    height: snackHeight,
     backgroundColor: 'blue',
     justifyContent: 'flex-start',
     alignItems: 'center',
@@ -23,9 +25,28 @@ class ListScreen extends React.Component {
     super(props);
     this.state = {
       checkCount: 0,
-      overSelect: false,
+      moveSnack: new Animated.Value(snackHeight),
     };
+    this.animationStart = this.animationStart.bind(this);
+    this.animationBack = this.animationBack.bind(this);
     this.handleCheckBox = this.handleCheckBox.bind(this);
+  }
+
+  componentWillUnmount() {
+    this.state.moveSnack.stopAnimation();
+  }
+
+  animationStart() {
+    Animated.timing(this.state.moveSnack, {
+      toValue: 0,
+      duration: 200,
+    }).start();
+  }
+
+  animationBack() {
+    Animated.timing(this.state.moveSnack, {
+      toValue: snackHeight,
+    }).start();
   }
 
   handleCheckBox(item, index) {
@@ -43,10 +64,9 @@ class ListScreen extends React.Component {
       this.setState({
         checkCount: this.state.checkCount =
           this.state.checkCount === 0 ? this.state.checkCount : this.state.checkCount -= 1,
-        overSelect: false,
       });
     } else {
-      this.setState({ overSelect: true });
+      this.animationStart();
     }
   }
 
@@ -64,7 +84,7 @@ class ListScreen extends React.Component {
           onRefresh={() => {
             pullToRefresh();
             // init count
-            this.setState({ checkCount: this.state.checkCount = 0, overSelect: false });
+            this.setState({ checkCount: this.state.checkCount = 0 });
           }}
           refreshing={refresh}
           renderItem={({ item, index }) => (
@@ -76,22 +96,26 @@ class ListScreen extends React.Component {
             />
           )}
         />
-        {
-          this.state.overSelect ?
-            <View style={styles.snackContainer}>
-              <View style={[styles.snack, { width }]}>
-                <Text style={{ fontSize: 16, color: 'white' }}>5個以内で選択してください</Text>
-                <View style={{ flex: 1 }}>
-                  <TouchableOpacity
-                    onPress={() => this.setState({ overSelect: false })}
-                    style={{ alignSelf: 'flex-end', padding: 8, marginRight: 16 }}
-                  >
-                    <Text style={{ color: 'white' }}>OK</Text>
-                  </TouchableOpacity>
-                </View>
-              </View>
-            </View> : null
-        }
+        <View style={styles.snackContainer}>
+          <Animated.View style={[
+            styles.snack, {
+              width,
+              transform: [
+                { translateY: this.state.moveSnack },
+              ],
+            }]}
+          >
+            <Text style={{ fontSize: 16, color: 'white' }}>5個以内で選択してください</Text>
+            <View style={{ flex: 1 }}>
+              <TouchableOpacity
+                onPress={() => this.animationBack()}
+                style={{ alignSelf: 'flex-end', padding: 8, marginRight: 16 }}
+              >
+                <Text style={{ color: 'white' }}>OK</Text>
+              </TouchableOpacity>
+            </View>
+          </Animated.View>
+        </View>
       </View>
     );
   }
