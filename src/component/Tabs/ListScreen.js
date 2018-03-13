@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, FlatList, Dimensions, StyleSheet, TouchableOpacity, Animated, Easing } from 'react-native';
+import { View, Text, FlatList, Dimensions, StyleSheet, TouchableOpacity, Animated } from 'react-native';
 import ListItem from './ListItem';
 
 const snackHeight = 50;
