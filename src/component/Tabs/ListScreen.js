@@ -85,6 +85,7 @@ class ListScreen extends React.Component {
             pullToRefresh();
             // init count
             this.setState({ checkCount: this.state.checkCount = 0 });
+            this.animationBack();
           }}
           refreshing={refresh}
           renderItem={({ item, index }) => (
