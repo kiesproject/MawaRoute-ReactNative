@@ -1,5 +1,6 @@
 import React from 'react';
 import { View, Text, StyleSheet, Image, TouchableOpacity, Dimensions } from 'react-native';
+import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 
 const styles = StyleSheet.create({
   container: {
@@ -11,6 +12,9 @@ const styles = StyleSheet.create({
     padding: 8,
     fontSize: 24,
     fontWeight: 'bold',
+  },
+  iconStyle: {
+    padding: 8,
   },
   cardStyle: {
     backgroundColor: '#ffffff',
@@ -44,6 +48,9 @@ const styles = StyleSheet.create({
     padding: 15,
     color: 'rgba(0, 0, 0, 0.54)',
   },
+  imageTransparent: {
+    ...StyleSheet.absoluteFillObject, backgroundColor: '#0005', height: 170, alignItems: 'flex-end',
+  },
   cardActionStyle: {
     borderStyle: 'solid',
     borderTopColor: 'rgba(0, 0, 0, 0.1)',
@@ -58,24 +65,37 @@ function typeOfObject(param) {
 
 class ListItem extends React.Component {
   render() {
-    const { item, goDetail } = this.props;
+    const {
+      item, goDetail, handleCheckBox, index,
+    } = this.props;
     const { width } = Dimensions.get('window');
+    const checkbox =
+      (<Icon
+        size={48}
+        name={item.isChecked ? 'check-circle-outline' : 'checkbox-blank-circle-outline'}
+        color="white"
+        onPress={() => { handleCheckBox(item, index); }}
+        style={styles.iconStyle}
+      />);
+
     return (
       <View style={styles.container}>
         <View style={styles.cardStyle}>
           {/* TODO: decide theme */}
           {
-            !typeOfObject(item.image_url.shop_image1) ?
+            !typeOfObject(item.imgUrl) ?
               <View>
                 <Image
-                  source={{ uri: item.image_url.shop_image1 }}
+                  source={{ uri: item.imgUrl }}
                   style={[styles.cardImageStyle]}
                 />
-                <View
-                  style={[{ ...StyleSheet.absoluteFillObject, backgroundColor: '#0005', height: 170 }]}
-                />
+                <View style={styles.imageTransparent}>
+                  {checkbox}
+                </View>
               </View> :
-              <View style={[{ height: 170, backgroundColor: '#e4581bff' }]} />
+              <View style={[{ height: 170, backgroundColor: '#e4581bff', alignItems: 'flex-end' }]}>
+                {checkbox}
+              </View>
           }
           <Text
             style={[styles.cardTitleStyle, { maxWidth: width - 16 - 24 }]}

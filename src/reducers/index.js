@@ -37,11 +37,35 @@ function location(state = initialLocationState, action) {
   }
 }
 
+/*
+// state object
+{
+  name: '',
+  address: '',
+  imgUrl: {},
+  locale: {
+    latitude: '0.0',
+    longitude: '0.0',
+  },
+  category: '',
+  isChecked: false,
+}
+*/
 const initialListState = List([]);
 function restaurant(state = initialListState, action) {
   switch (action.type) {
     case 'UPDATE_RESTAURANT': {
       return List(action.list);
+    }
+    case 'CHECK': {
+      return state.update(action.index, data => ({
+        name: data.name,
+        address: data.address,
+        imgUrl: data.imgUrl,
+        locale: data.locale,
+        category: data.category,
+        isChecked: action.isChecked,
+      }));
     }
     default: {
       return state;

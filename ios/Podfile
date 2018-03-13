@@ -27,6 +27,8 @@ target 'MawaRouteForRN' do
   pod 'react-native-google-maps', path: rn_maps_path  # Remove this line if you don't want to support Google Maps on iOS
   pod 'react-native-material-kit', :path => '../node_modules/react-native-material-kit'
 
+  pod 'RNVectorIcons', :path => '../node_modules/react-native-vector-icons'
+
 end
 
 post_install do |installer|

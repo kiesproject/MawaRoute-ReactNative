@@ -3,6 +3,7 @@ const UPDATE_LOCATION = 'UPDATE_LOCATION';
 const UPDATE_LIST = 'UPDATE_LIST';
 const SET_VISIBILITY = 'SET_VISIBILITY';
 const GO_DETAIL = 'GO_DETAIL';
+const CHECK = 'CHECK';
 
 export function updateRestaurant(restaurantList) {
   return {
@@ -35,5 +36,13 @@ export function goDetail(rest) {
   return {
     type: GO_DETAIL,
     rest,
+  };
+}
+
+export function check(isChecked, index) {
+  return {
+    type: CHECK,
+    isChecked,
+    index,
   };
 }

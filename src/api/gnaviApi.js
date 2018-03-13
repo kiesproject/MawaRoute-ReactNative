@@ -9,5 +9,17 @@ const responseWithParam = location => `${response}?keyid=${key}&format=${format}
 export function fetchRestaurantByLocation(location) {
   return fetch(responseWithParam(location))
     .then(res => res.json())
-    .then(json => json.rest);
+    .then(json => json.rest.map(data => (
+      {
+        name: data.name,
+        address: data.address,
+        imgUrl: data.image_url.shop_image1,
+        locale: {
+          latitude: data.latitude,
+          longitude: data.longitude,
+        },
+        category: data.category,
+        isChecked: false,
+      }
+    )));
 }
