@@ -23,7 +23,7 @@ class ListScreen extends React.Component {
     super(props);
     this.state = {
       checkCount: 0,
-      overSelect: true,
+      overSelect: false,
     };
     this.handleCheckBox = this.handleCheckBox.bind(this);
   }
