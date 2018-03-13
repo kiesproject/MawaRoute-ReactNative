@@ -69,21 +69,15 @@ class ListItem extends React.Component {
       item, goDetail, handleCheckBox, index,
     } = this.props;
     const { width } = Dimensions.get('window');
-    const checkbox = item.isChecked ?
+    const checkbox =
       (<Icon
         size={48}
-        name="check-circle-outline"
-        color="white"
-        onPress={() => { handleCheckBox(item, index); }}
-        style={styles.iconStyle}
-      />) :
-      (<Icon
-        size={48}
-        name="checkbox-blank-circle-outline"
+        name={item.isChecked ? 'check-circle-outline' : 'checkbox-blank-circle-outline'}
         color="white"
         onPress={() => { handleCheckBox(item, index); }}
         style={styles.iconStyle}
       />);
+
     return (
       <View style={styles.container}>
         <View style={styles.cardStyle}>
