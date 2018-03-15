@@ -1,19 +1,32 @@
 version: 2
 jobs:
+  compile:
+    working_directory: ~/project
+    docker:
+      - image: circleci/node:8
+    steps:
+      - checkout
+      - run: |
+          npm install
+          cp index.d.ts node_modules/react-navigation-redux-helpers/
+          rm -rf ./node_modules/react-native/local-cli/core/__fixtures__/files/package.json
+      - run: npx tsc
+      - persist_to_workspace:
+          root: ~/project
+          paths: 
+            - node_modules
+
   android:
     working_directory: ~/project/android
     docker:
       - image: circleci/android:api-27-node8-alpha
     steps:
       - checkout: 
-          path: ~/project 
-      - run: |
-          cd ../
-          npm install
-          cp index.d.ts node_modules/react-navigation-redux-helpers/
-          rm -rf ./node_modules/react-native/local-cli/core/__fixtures__/files/package.json
+          path: ~/project
+      - attach_workspace:
+          at: ~/project
       - restore_cache:
-         key: jars-{{ checksum "build.gradle" }}-{{ checksum  "app/build.gradle" }}
+        key: jars-{{ checksum "build.gradle" }}-{{ checksum  "app/build.gradle" }}
       - run:
          name: Set License
          command: |
