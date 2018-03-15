@@ -36,7 +36,7 @@ $ rm ./node_modules/react-native/local-cli/core/__fixtures__/files/package.json
 ```
 
 `react-navigation-redux-helpers`が.d.tsファイルのプルリクをマージするまで自分たちで追加しましょう。
-`./node_modules/react-navigation-redux-helpers/`配下に以下の内容を示したファイル`index.d.ts`を追加
+`./node_modules/react-navigation-redux-helpers/`配下に以下の内容を示したファイル`index.d.ts`を追加
 ```ts
 declare module 'react-navigation-redux-helpers' {
     import { NavigationContainer, NavigationEventCallback, NavigationEventSubscription, NavigationState } from 'react-navigation';
