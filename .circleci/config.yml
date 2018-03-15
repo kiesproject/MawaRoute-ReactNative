@@ -1,34 +1,16 @@
 version: 2
 jobs:
-  lint:
-    working_directory: ~/project
-    docker:
-      - image: circleci/node:8
-    environment:
-      REVIEWDOG_VERSION: 0.9.8
-    steps:
-      - checkout
-      - run:
-          name: Install Reviewdog
-          command: curl -fSL https://github.com/haya14busa/reviewdog/releases/download/$REVIEWDOG_VERSION/reviewdog_linux_amd64 -o reviewdog && chmod +x ./reviewdog
-      - run: |
-          npm install
-          rm -rf ./node_modules/react-native/local-cli/core/__fixtures__/files/package.json
-      - run: npx eslint . -f compact | ./reviewdog -f=eslint-compact -ci="circle-ci"
-      - persist_to_workspace:
-          root: ~/project
-          paths:
-            - node_modules
-
   android:
-    working_directory: ~/project/android
+    working_directory: ~/project/
     docker:
       - image: circleci/android:api-27-node8-alpha
     steps:
-      - checkout:
-          path: ~/project
-      - attach_workspace:
-          at: ~/project
+      - checkout
+      - run: |
+          npm install
+          cp index.d.ts node_modules/react-navigation-redux-helpers/
+          rm -rf ./node_modules/react-native/local-cli/core/__fixtures__/files/package.json
+          cd android/
       - restore_cache:
          key: jars-{{ checksum "build.gradle" }}-{{ checksum  "app/build.gradle" }}
       - run:
@@ -55,7 +37,4 @@ workflows:
   version: 2
   node-android:
     jobs:
-      - lint
-      - android:
-          requires:
-            - lint
+      - android
