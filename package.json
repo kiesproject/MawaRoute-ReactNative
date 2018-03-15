@@ -15,14 +15,22 @@
     "react-native": "0.53.0",
     "react-native-maps": "^0.20.1",
     "react-native-vector-icons": "^4.5.0",
-    "react-navigation": "^1.0.3",
-    "react-navigation-redux-helpers": "^1.0.1",
+    "react-navigation": "^1.1.2",
+    "react-navigation-redux-helpers": "^1.0.3",
     "react-redux": "^5.0.6",
     "redux": "^3.7.2",
     "redux-saga": "^0.16.0",
     "uuid": "^3.2.1"
   },
   "devDependencies": {
+    "@types/react": "^16.0.40",
+    "@types/react-native": "^0.52.18",
+    "@types/react-native-vector-icons": "^4.4.3",
+    "@types/react-navigation": "^1.2.1",
+    "@types/react-redux": "^5.0.15",
+    "@types/redux": "^3.6.0",
+    "@types/redux-saga": "^0.10.5",
+    "@types/uuid": "^3.4.3",
     "babel-eslint": "^8.2.2",
     "babel-jest": "22.2.2",
     "babel-preset-react-native": "4.0.0",
@@ -33,7 +41,8 @@
     "eslint-plugin-jsx-a11y": "^6.0.3",
     "eslint-plugin-react": "^7.7.0",
     "jest": "22.3.0",
-    "react-test-renderer": "16.2.0"
+    "react-test-renderer": "16.2.0",
+    "typescript": "^2.7.2"
   },
   "jest": {
     "preset": "react-native"
