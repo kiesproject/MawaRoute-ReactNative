@@ -1,4 +1,4 @@
-package com.mawarouteforrn;
+package kies.mawaroute;
 
 import com.facebook.react.ReactActivity;
 
