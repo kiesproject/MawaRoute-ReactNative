@@ -63,7 +63,7 @@ declare module 'react-navigation-redux-helpers' {
 - 以下のことをやればいいよ(ﾆｯｺﾘ)
 
       openssl aes-256-cbc -d -in android/secret.properties.encrypted -out android/secret.properties
-      openssl aes-256-cbc -d -in android/keystores/release.keystore -out android/keystores/release.keystore.properties
+      openssl aes-256-cbc -d -in android/keystores/release.keystore.encrypted -out android/keystores/release.keystore
 
 -  パスワードは[ここ](https://github.com/kiesproject/account/blob/master/android/MawaRouteForRN.md)にあるよ
 
