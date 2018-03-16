@@ -10,7 +10,7 @@ jobs:
           npm install
           cp index.d.ts node_modules/react-navigation-redux-helpers/
           rm -rf ./node_modules/react-native/local-cli/core/__fixtures__/files/package.json
-      - run: npx tsc
+      - run: npx tsc --skiplibCheck
       - persist_to_workspace:
           root: ~/project
           paths: 

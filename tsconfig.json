@@ -1,6 +1,6 @@
 {
   "compilerOptions": {
-    "target": "es2017",
+    "target": "es6",
     "jsx": "react-native",
     "outDir": "build",
     "rootDir": "src",
@@ -9,12 +9,16 @@
     "experimentalDecorators": true,
     "preserveConstEnums": true,
     "sourceMap": true,
-    "module": "es2015",
+    "module": "commonjs",
     "moduleResolution": "node",
     "lib": [
       "dom",
-      "es2017"
-    ]
+      "es6"
+    ],
+    "typeRoots": [
+      "./node_modules/@types"
+    ],
+    "types": [],
   },
   "include": [
     "src/**/*"
@@ -25,5 +29,4 @@
     "node_modules",
     "__tests__"
   ],
-  "compileOnSave": false
 }
