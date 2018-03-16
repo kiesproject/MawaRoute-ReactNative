@@ -55,6 +55,7 @@ jobs:
       - run:
           name: Deploy
           command: |
+              [ "$CIRCLE_BRANCH" != "master" ] && exit
               ../deploy.sh
 
 workflows:
