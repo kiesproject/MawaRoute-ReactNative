@@ -55,7 +55,7 @@ jobs:
       - run:
           name: Deploy
           command: |
-              ./deploy.sh
+              ../deploy.sh
 
 workflows:
   version: 2
