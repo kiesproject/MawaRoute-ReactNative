@@ -9,7 +9,7 @@
     "experimentalDecorators": true,
     "preserveConstEnums": true,
     "sourceMap": true,
-    "module": "commonjs",
+    "module": "es6",
     "moduleResolution": "node",
     "lib": [
       "dom",
@@ -18,7 +18,7 @@
     "typeRoots": [
       "./node_modules/@types"
     ],
-    "types": [],
+    "types": []
   },
   "include": [
     "src/**/*"
@@ -28,5 +28,5 @@
     "build",
     "node_modules",
     "__tests__"
-  ],
+  ]
 }

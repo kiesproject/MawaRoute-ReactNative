@@ -59,6 +59,15 @@ declare module 'react-navigation-redux-helpers' {
 }
 ```
 
+## Androidをリリースするための署名の準備
+- これをやるためにはopenssl 1.1系が必要だよ、入れてね
+- 以下のことをやればいいよ(ﾆｯｺﾘ)
+
+      openssl aes-256-cbc -d -in android/secret.properties.encrypted -out android/secret.properties
+      openssl aes-256-cbc -d -in android/keystores/release.keystore.encrypted -out android/keystores/release.keystore
+
+-  パスワードは[ここ](https://github.com/kiesproject/account/blob/master/android/MawaRouteForRN.md)にあるよ
+
 ## Environment
 #### ReactNative(0.53.0), React(16.2.0)
 - none

@@ -26,6 +26,11 @@ jobs:
           path: ~/project
       - attach_workspace:
           at: ~/project
+      - run:
+          name: Decrypted keys
+          command: |
+              openssl aes-256-cbc -d -k $SIGNATURE_DECRYPT_KEY -in secret.properties.encrypted -out secret.properties
+              openssl aes-256-cbc -d -k $SIGNATURE_DECRYPT_KEY -in keystores/release.keystore.encrypted -out keystores/release.keystore
       - restore_cache:
           key: jars-{{ checksum "build.gradle" }}-{{ checksum  "app/build.gradle" }}
       - run:
