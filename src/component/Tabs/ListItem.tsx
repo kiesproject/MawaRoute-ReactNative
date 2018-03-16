@@ -1,6 +1,9 @@
-import React from 'react';
+import * as React from 'react';
 import { View, Text, StyleSheet, Image, TouchableOpacity, Dimensions } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
+
+import Restaurant from '../../model/Restaurant';
+import { goDetail } from '../../actions';
 
 const styles = StyleSheet.create({
   container: {
@@ -59,11 +62,18 @@ const styles = StyleSheet.create({
   },
 });
 
-function typeOfObject(param) {
+function typeOfObject(param: any) {
   return typeof param === 'object';
 }
 
-class ListItem extends React.Component {
+interface ListItemProperties {
+  item: Restaurant,
+  goDetail: (item: Restaurant) => void,
+  handleCheckBox: (item: Restaurant, index: number) => void
+  index: number
+}
+
+class ListItem extends React.Component<ListItemProperties, any> {
   render() {
     const {
       item, goDetail, handleCheckBox, index,
@@ -86,7 +96,7 @@ class ListItem extends React.Component {
             !typeOfObject(item.imgUrl) ?
               <View>
                 <Image
-                  source={{ uri: item.imgUrl }}
+                  source={{ uri: item.imgUrl as string }}
                   style={[styles.cardImageStyle]}
                 />
                 <View style={styles.imageTransparent}>

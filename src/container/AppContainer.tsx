@@ -1,11 +1,13 @@
 import React from 'react';
 import { BackHandler } from 'react-native';
-import { StackNavigator, addNavigationHelpers, NavigationActions } from 'react-navigation';
+import { NavigationContainer, StackNavigator, addNavigationHelpers, NavigationActions } from 'react-navigation';
 import { connect } from 'react-redux';
 
 import HomeScreen from '../component/HomeScreen';
 import DetailScreen from '../component/DetailScreen';
 import { updateList, goDetail, check } from '../actions/index';
+import Location from '../model/Location';
+import Restaurant from '../model/Restaurant';
 
 export const AppNavigator = StackNavigator({
   Home: {
@@ -22,8 +24,17 @@ export const AppNavigator = StackNavigator({
   },
 });
 
-class AppWithNavigationState extends React.Component {
-  constructor(props) {
+interface AppContainerProperties {
+  dispatch: any,
+  nav: any,
+  addListener: any,
+  location: Location,
+  restaurant: Restaurant,
+  refresh: boolean,
+}
+
+class AppWithNavigationState extends React.Component<AppContainerProperties, any> {
+  constructor(props: AppContainerProperties) {
     super(props);
     this.pullToRefresh = this.pullToRefresh.bind(this);
     this.goDetail = this.goDetail.bind(this);
@@ -33,9 +44,11 @@ class AppWithNavigationState extends React.Component {
   componentDidMount() {
     BackHandler.addEventListener('hardwareBackPress', this.onBackPress);
   }
+
   componentWillUnmount() {
     BackHandler.removeEventListener('hardwareBackPress', this.onBackPress);
   }
+
   onBackPress = () => {
     const { dispatch, nav } = this.props;
     if (nav.index === 0) {
@@ -44,17 +57,18 @@ class AppWithNavigationState extends React.Component {
     dispatch(NavigationActions.back());
     return true;
   };
+
   pullToRefresh() {
     const { dispatch } = this.props;
     dispatch(updateList());
   }
 
-  goDetail(rest) {
+  goDetail(rest: Restaurant) {
     const { dispatch } = this.props;
     dispatch(goDetail(rest));
   }
 
-  check(isChecked, index) {
+  check(isChecked: boolean, index: number) {
     const { dispatch } = this.props;
     dispatch(check(isChecked, index));
   }
@@ -85,7 +99,7 @@ class AppWithNavigationState extends React.Component {
   }
 }
 
-function mapStateToProps(state) {
+function mapStateToProps(state: any) {
   return ({
     nav: state.nav,
     location: state.location,

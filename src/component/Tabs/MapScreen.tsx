@@ -2,7 +2,10 @@ import React from 'react';
 import MapView, { Marker } from 'react-native-maps';
 import uuid from 'uuid/v4';
 
-function regionFrom(lat, lon, distance) {
+import ScreenPropsProperties from '../../model/ScreenProps';
+import Restaurant from '../../model/Restaurant';
+
+function regionFrom(lat: number, lon: number, distance: number) {
   const dist = distance / 2;
   const circumference = 40075;
   const oneDegreeOfLatitudeInMeters = 111.32 * 1000;
@@ -22,7 +25,11 @@ function regionFrom(lat, lon, distance) {
   };
 }
 
-class MapScreen extends React.Component {
+interface MapScreenProperties {
+  screenProps: ScreenPropsProperties,
+}
+
+class MapScreen extends React.Component<MapScreenProperties, any> {
   render() {
     const { location, restaurant } = this.props.screenProps;
     return (
@@ -32,12 +39,12 @@ class MapScreen extends React.Component {
         provider="google"
       >
         {
-          restaurant.map(marker => (
+          restaurant.map((marker: Restaurant) => (
             <Marker
               key={uuid()}
               coordinate={{
-                latitude: parseFloat(marker.locale.latitude),
-                longitude: parseFloat(marker.locale.longitude),
+                latitude: marker.locale.latitude,
+                longitude: marker.locale.longitude,
               }}
               title={marker.name}
               description={marker.category}

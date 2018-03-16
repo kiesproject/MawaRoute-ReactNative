@@ -35,6 +35,29 @@ RNのver0.53以降、`react-native-vector-icons`で致命的なエラーが起�
 $ rm ./node_modules/react-native/local-cli/core/__fixtures__/files/package.json
 ```
 
+`react-navigation-redux-helpers`が.d.tsファイルのプルリクをマージするまで自分たちで追加しましょう。
+`./node_modules/react-navigation-redux-helpers/`配下に以下の内容を示したファイル`index.d.ts`を追加
+```ts
+declare module 'react-navigation-redux-helpers' {
+    import { NavigationContainer, NavigationEventCallback, NavigationEventSubscription, NavigationState } from 'react-navigation';
+    import { Middleware, Reducer } from 'redux';
+
+    export type Navigator = NavigationContainer;
+
+    export type ReducerState = NavigationState | null | undefined;
+
+    export function initializeListeners(key: string, state: NavigationState): void;
+
+    export function createReactNavigationReduxMiddleware<S>
+    (key: string, navStateSelector: (state: S) => NavigationState): Middleware;
+
+    export function createReduxBoundAddListener
+    (key: string): (eventName: string, callback: NavigationEventCallback) => NavigationEventSubscription;
+
+    export function createNavigationReducer(navigator: Navigator): Reducer<ReducerState>;
+}
+```
+
 ## Environment
 #### ReactNative(0.53.0), React(16.2.0)
 - none

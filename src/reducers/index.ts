@@ -1,11 +1,14 @@
 import { List } from 'immutable';
 import { NavigationActions } from 'react-navigation';
 import { combineReducers } from 'redux';
+
 import { AppNavigator } from '../container/AppContainer';
+import Location from '../model/Location';
+import Restaurant from '../model/Restaurant';
 
 const initialNavState = AppNavigator.router.getStateForAction(AppNavigator.router.getActionForPathAndParams('Home'));
 
-function nav(state = initialNavState, action) {
+function nav(state = initialNavState, action: any) {
   switch (action.type) {
     case 'GO_DETAIL': {
       return AppNavigator.router.getStateForAction(
@@ -22,11 +25,11 @@ function nav(state = initialNavState, action) {
   }
 }
 
-const initialLocationState = {
+const initialLocationState: Location = {
   latitude: 0.0,
   longitude: 0.0,
 };
-function location(state = initialLocationState, action) {
+function location(state = initialLocationState, action: any) {
   switch (action.type) {
     case 'UPDATE_LOCATION': {
       return action.location;
@@ -37,22 +40,8 @@ function location(state = initialLocationState, action) {
   }
 }
 
-/*
-// state object
-{
-  name: '',
-  address: '',
-  imgUrl: {},
-  locale: {
-    latitude: '0.0',
-    longitude: '0.0',
-  },
-  category: '',
-  isChecked: false,
-}
-*/
-const initialListState = List([]);
-function restaurant(state = initialListState, action) {
+const initialListState: List<Restaurant> = List([]);
+function restaurant(state = initialListState, action: any) {
   switch (action.type) {
     case 'UPDATE_RESTAURANT': {
       return List(action.list);
@@ -73,8 +62,8 @@ function restaurant(state = initialListState, action) {
   }
 }
 
-const initialRefreshVisibility = false;
-function refresh(state = initialRefreshVisibility, action) {
+const initialRefreshVisibility: boolean = false;
+function refresh(state = initialRefreshVisibility, action: any) {
   switch (action.type) {
     case 'SET_VISIBILITY': {
       return action.visibility;

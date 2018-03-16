@@ -1,4 +1,5 @@
-import React from 'react';
+import * as React from 'react';
+import { View, Text } from 'react-native';
 import { createStore, applyMiddleware } from 'redux';
 import { Provider } from 'react-redux';
 import createMiddlewares from 'redux-saga';
@@ -16,7 +17,7 @@ const sagaMiddleware = createMiddlewares();
 // navigation middleware
 const navMiddleware = createReactNavigationReduxMiddleware(
   'root',
-  state => state.nav,
+  (state: any) => state.nav,
 );
 const addListener = createReduxBoundAddListener('root');
 
@@ -30,7 +31,7 @@ sagaMiddleware.run(rootSaga);
 export default class App extends React.Component {
   render() {
     return (
-      <Provider store={store}>
+      <Provider store={store} >
         <AppContainer
           addListener={addListener}
         />

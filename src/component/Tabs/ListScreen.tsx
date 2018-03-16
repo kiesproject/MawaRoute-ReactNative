@@ -1,6 +1,9 @@
-import React from 'react';
+import * as React from 'react';
 import { View, Text, FlatList, Dimensions, StyleSheet, TouchableOpacity, Animated } from 'react-native';
+
 import ListItem from './ListItem';
+import ScreenPropsProperties from '../../model/ScreenProps';
+import Restaurant from '../../model/Restaurant';
 
 const snackHeight = 50;
 
@@ -20,8 +23,17 @@ const styles = StyleSheet.create({
   },
 });
 
-class ListScreen extends React.Component {
-  constructor(props) {
+interface ListScreenProperties {
+  screenProps: ScreenPropsProperties,
+}
+
+interface ListScreenState {
+  checkCount: number,
+  moveSnack: Animated.Value,
+}
+
+class ListScreen extends React.Component<ListScreenProperties, ListScreenState> {
+  constructor(props: ListScreenProperties) {
     super(props);
     this.state = {
       checkCount: 0,
@@ -49,22 +61,21 @@ class ListScreen extends React.Component {
     }).start();
   }
 
-  handleCheckBox(item, index) {
+  handleCheckBox(item: Restaurant, index: number) {
     const { check } = this.props.screenProps;
 
     if (!item.isChecked && this.state.checkCount < 5) {
       check(!item.isChecked, index);
       // increment count
-      this.setState({
-        checkCount: this.state.checkCount += 1,
-      });
+      this.setState(prevState => ({
+        checkCount: prevState.checkCount + 1
+      }));
     } else if (item.isChecked) {
       check(!item.isChecked, index);
       // decrement count
-      this.setState({
-        checkCount: this.state.checkCount =
-          this.state.checkCount === 0 ? this.state.checkCount : this.state.checkCount -= 1,
-      });
+      this.setState(prevState => ({
+        checkCount: prevState.checkCount === 0 ? prevState.checkCount : prevState.checkCount - 1
+      }));
     } else {
       this.animationStart();
     }
@@ -84,7 +95,7 @@ class ListScreen extends React.Component {
           onRefresh={() => {
             pullToRefresh();
             // init count
-            this.setState({ checkCount: this.state.checkCount = 0 });
+            this.setState({ checkCount: 0 });
             this.animationBack();
           }}
           refreshing={refresh}

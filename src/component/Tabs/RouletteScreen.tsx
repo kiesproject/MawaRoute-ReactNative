@@ -1,7 +1,13 @@
 import React from 'react';
 import { Text, FlatList } from 'react-native';
 
-class RouletteScreen extends React.Component {
+import ScreenPropsProperties from '../../model/ScreenProps';
+
+interface RouletteScreenProperties {
+  screenProps: ScreenPropsProperties,
+}
+
+class RouletteScreen extends React.Component<RouletteScreenProperties, any> {
   render() {
     const { restaurant } = this.props.screenProps;
     const checkedRestaurant = restaurant.filter(rest => rest.isChecked);
