@@ -3,7 +3,8 @@
 
 ## Description
 - [まわルート](https://github.com/kiesproject/MawaRoute)をReactNative + Redux + Redux-sagaで実装する
-- TypeScriptでの実装を行う予定でしたが，パッケージに合わせた開発を行うためにJavaScriptで開発をすることにしました．
+- ~~TypeScriptでの実装を行う予定でしたが，パッケージに合わせた開発を行うためにJavaScriptで開発をすることにしました．~~
+  - 無事TypeScriptに置き換えました
 
 ### Layer
 #### Container Component
