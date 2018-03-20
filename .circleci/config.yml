@@ -52,6 +52,11 @@ jobs:
           paths:
             - ~/.gradle
           key: jars-{{ checksum "build.gradle" }}-{{ checksum  "app/build.gradle" }}
+      - run:
+          name: Deploy
+          command: |
+              [ "$CIRCLE_BRANCH" != "master" ] && exit
+              ../deploy.sh
 
 workflows:
   version: 2
