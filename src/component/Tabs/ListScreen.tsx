@@ -99,7 +99,7 @@ class ListScreen extends React.Component<ListScreenProperties, ListScreenState> 
             this.animationBack();
           }}
           refreshing={refresh}
-          renderItem={({ item, index }) => (
+          renderItem={({ item, index }: {item: Restaurant, index: number}) => (
             <ListItem
               item={item}
               goDetail={goDetail}
