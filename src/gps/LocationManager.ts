@@ -19,8 +19,7 @@ function getLocation(): Promise<Location> {
 }
 
 async function syncLocation(): Promise<Location> {
-  const location: Location = await getLocation();
-  return location;
+    return await getLocation();
 }
 
 export function getOnceLocation(): Promise<Location> {

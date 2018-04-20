@@ -4,8 +4,6 @@ import { TabNavigator, TabBarBottom, NavigationContainer } from 'react-navigatio
 import ListScreen from './Tabs/ListScreen';
 import MapScreen from './Tabs/MapScreen';
 import RouletteScreen from './Tabs/RouletteScreen';
-import Restaurant from '../model/Restaurant';
-import Location from '../model/Location';
 import ScreenPropsProperties from '../model/ScreenProps';
 
 const Tab: NavigationContainer = TabNavigator({

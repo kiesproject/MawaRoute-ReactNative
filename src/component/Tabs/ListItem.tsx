@@ -3,7 +3,6 @@ import { View, Text, StyleSheet, Image, TouchableOpacity, Dimensions } from 'rea
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 
 import Restaurant from '../../model/Restaurant';
-import { goDetail } from '../../actions';
 
 const styles = StyleSheet.create({
   container: {

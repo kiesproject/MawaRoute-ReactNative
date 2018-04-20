@@ -1,7 +1,7 @@
 import { PermissionsAndroid, Platform } from 'react-native';
 import { all, fork, put, call, takeEvery } from 'redux-saga/effects';
 
-import { updateLocation, updateRestaurant, setRefreshVisibility } from '../actions/index';
+import { updateLocation, updateRestaurant, setRefreshVisibility } from '../actions';
 import { fetchRestaurantByLocation } from '../api/gnaviApi';
 import { getOnceLocation } from '../gps/LocationManager';
 
@@ -11,7 +11,7 @@ function* loadRestaurantByGps() {
     // location
     const location = yield call(getOnceLocation);
     yield put(updateLocation(location));
-    // load resaurant
+    // load restaurant
     const rest = yield call(fetchRestaurantByLocation, location);
     yield put(updateRestaurant(rest));
   } catch (error) {

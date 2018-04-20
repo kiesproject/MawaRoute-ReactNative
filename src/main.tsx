@@ -1,8 +1,7 @@
 import * as React from 'react';
-import { View, Text } from 'react-native';
 import { createStore, applyMiddleware } from 'redux';
 import { Provider } from 'react-redux';
-import createMiddlewares from 'redux-saga';
+import createSagaMiddleware from 'redux-saga';
 import {
   createReactNavigationReduxMiddleware,
   createReduxBoundAddListener,
@@ -12,7 +11,7 @@ import AppContainer from './container/AppContainer';
 import appReducer from './reducers/index';
 import rootSaga from './sagas/index';
 
-const sagaMiddleware = createMiddlewares();
+const sagaMiddleware = createSagaMiddleware();
 
 // navigation middleware
 const navMiddleware = createReactNavigationReduxMiddleware(

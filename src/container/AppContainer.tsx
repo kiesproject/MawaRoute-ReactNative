@@ -1,11 +1,11 @@
 import React from 'react';
 import { BackHandler } from 'react-native';
-import { NavigationContainer, StackNavigator, addNavigationHelpers, NavigationActions } from 'react-navigation';
+import { StackNavigator, addNavigationHelpers, NavigationActions } from 'react-navigation';
 import { connect } from 'react-redux';
 
 import HomeScreen from '../component/HomeScreen';
 import DetailScreen from '../component/DetailScreen';
-import { updateList, goDetail, check } from '../actions/index';
+import { updateList, goDetail, check } from '../actions';
 import Location from '../model/Location';
 import Restaurant from '../model/Restaurant';
 
