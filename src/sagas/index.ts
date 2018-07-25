@@ -29,7 +29,6 @@ function* initLoad() {
         yield loadRestaurantByGps();
       }
     } else {
-      navigator.geolocation.requestAuthorization();
       yield loadRestaurantByGps();
     }
   } catch (error) {
