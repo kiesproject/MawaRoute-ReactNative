@@ -4,7 +4,6 @@ import { Provider } from 'react-redux';
 import createSagaMiddleware from 'redux-saga';
 import {
   createReactNavigationReduxMiddleware,
-  createReduxBoundAddListener,
 } from 'react-navigation-redux-helpers';
 
 import AppContainer from './container/AppContainer';
@@ -18,7 +17,6 @@ const navMiddleware = createReactNavigationReduxMiddleware(
   'root',
   (state: any) => state.nav,
 );
-const addListener = createReduxBoundAddListener('root');
 
 // create store
 const store = createStore(
@@ -31,9 +29,7 @@ export default class App extends React.Component {
   render() {
     return (
       <Provider store={store} >
-        <AppContainer
-          addListener={addListener}
-        />
+        <AppContainer />
       </Provider>
     );
   }

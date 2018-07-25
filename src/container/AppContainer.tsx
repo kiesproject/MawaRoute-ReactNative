@@ -1,6 +1,7 @@
 import React from 'react';
 import { BackHandler } from 'react-native';
-import { StackNavigator, addNavigationHelpers, NavigationActions } from 'react-navigation';
+import { StackNavigator,  NavigationActions } from 'react-navigation';
+import { reduxifyNavigator } from 'react-navigation-redux-helpers';
 import { connect } from 'react-redux';
 
 import HomeScreen from '../component/HomeScreen';
@@ -27,11 +28,12 @@ export const AppNavigator = StackNavigator({
 interface AppContainerProperties {
   dispatch: any,
   nav: any,
-  addListener: any,
   location: Location,
   restaurant: Restaurant,
   refresh: boolean,
 }
+
+const App = reduxifyNavigator(AppNavigator, 'root'); 
 
 class AppWithNavigationState extends React.Component<AppContainerProperties, any> {
   constructor(props: AppContainerProperties) {
@@ -75,17 +77,10 @@ class AppWithNavigationState extends React.Component<AppContainerProperties, any
 
   render() {
     const {
-      dispatch, nav, addListener, location, restaurant, refresh,
+      dispatch, nav, location, restaurant, refresh,
     } = this.props;
     return (
       <AppNavigator
-        navigation={
-          addNavigationHelpers({
-            dispatch,
-            state: nav,
-            addListener,
-          })
-        }
         screenProps={{
           location,
           restaurant,
